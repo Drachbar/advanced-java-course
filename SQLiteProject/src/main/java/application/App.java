@@ -1,5 +1,6 @@
 package application;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -34,7 +35,15 @@ public class App {
 		System.out.println("Enter password");
 		String passwd = scan.nextLine();
 
-		var conn = DriverManager.getConnection(dbUrl, usrnm, passwd);
+		Connection conn; 
+		try {
+			
+			conn = DriverManager.getConnection(dbUrl, usrnm, passwd);
+		} catch (Exception e) {
+			System.out.println("Wrong password");
+			System.exit(0);
+		}
+		conn = DriverManager.getConnection(dbUrl, usrnm, passwd);
 
 		
 		
