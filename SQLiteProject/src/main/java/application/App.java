@@ -10,17 +10,18 @@ public class App {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
-		
+		/*
 		Scanner scan = new Scanner(System.in);
 		
 		int loopExit = 1;
 		String inputName;
 		int loopCount = 0;
 		
-		/*
+		*/
+		
 		int[] ids = {0, 1, 2};
 		String[] names = {"Sue", "Bob", "Charlie"};
-		*/
+		
 		
 		Class.forName("org.sqlite.JDBC");
 		
@@ -37,14 +38,15 @@ public class App {
 		sql = "insert into user (id, name) values (?, ?)";
 		var insertStmt = conn.prepareStatement(sql);
 		
-		/*
+		
 		for (int i = 0; i < ids.length; i++) {
 			insertStmt.setInt(1, ids[i]);
 			insertStmt.setString(2, names[i]);
 			
-			//insertStmt.executeUpdate();
-		}*/
+			insertStmt.executeUpdate();
+		}
 		
+		/*
 		sql = "select id from user";
 		var rs = stmt.executeQuery(sql);
 		while(rs.next()) {
@@ -66,13 +68,13 @@ public class App {
 			loopExit = Integer.parseInt(scan.next());
 		}
 		scan.close();
-		
+		*/
 		
 		conn.commit();
 		insertStmt.close();
 		
 		sql = "select id, name from user";
-		rs = stmt.executeQuery(sql);
+		var rs = stmt.executeQuery(sql);
 		
 		while(rs.next()) {
 			int id = rs.getInt("id");
@@ -82,6 +84,7 @@ public class App {
 		
 		sql = "drop table user";
 		stmt.execute(sql);
+		conn.commit();
 		
 		stmt.close();
 		
