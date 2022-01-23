@@ -10,9 +10,9 @@ public class App {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
-		/*
-		Scanner scan = new Scanner(System.in);
 		
+		Scanner scan = new Scanner(System.in);
+		/*
 		int loopExit = 1;
 		String inputName;
 		int loopCount = 0;
@@ -23,19 +23,27 @@ public class App {
 		String[] names = {"Sue", "Bob", "Charlie"};
 		
 		
-		Class.forName("org.sqlite.JDBC");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
-		String dbUrl = "jdbc:sqlite:people.db";
+		String dbUrl = "jdbc:mysql://localhost:3306/people";
 		
-		var conn = DriverManager.getConnection(dbUrl);
+		//var conn = DriverManager.getConnection(dbUrl, "advancedjava", "hello");
+		
+		System.out.println("Enter username");
+		String usrnm = scan.nextLine();
+		System.out.println("Enter password");
+		String passwd = scan.nextLine();
+
+		var conn = DriverManager.getConnection(dbUrl, usrnm, passwd);
+
+		
+		
 		
 		var stmt = conn.createStatement();
 		conn.setAutoCommit(false);
 		
-		var sql = "create table if not exists user (id integer primary key, name text not null)";
-		stmt.execute(sql);
 		
-		sql = "insert into user (id, name) values (?, ?)";
+		var sql = "insert into user (id, name) values (?, ?)";
 		var insertStmt = conn.prepareStatement(sql);
 		
 		
@@ -43,7 +51,7 @@ public class App {
 			insertStmt.setInt(1, ids[i]);
 			insertStmt.setString(2, names[i]);
 			
-			insertStmt.executeUpdate();
+			//insertStmt.executeUpdate();
 		}
 		
 		/*
@@ -67,8 +75,9 @@ public class App {
 			System.out.println("Continue? 0=no 1=yes");
 			loopExit = Integer.parseInt(scan.next());
 		}
-		scan.close();
 		*/
+		scan.close();
+		
 		
 		conn.commit();
 		insertStmt.close();
@@ -82,9 +91,6 @@ public class App {
 			System.out.println(id + ": " + name);
 		}
 		
-		sql = "drop table user";
-		stmt.execute(sql);
-		conn.commit();
 		
 		stmt.close();
 		
