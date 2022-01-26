@@ -1,13 +1,26 @@
 package com.drachbar.db.mysql;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 public class UserDaoImpl implements UserDao{
 
 	@Override
-	public void save(User t) {
-		// TODO Auto-generated method stub
+	public void save(User u) {
+		var conn = Database.instance().getConnection();
+		
+		try {
+			var stmt = conn.prepareStatement("insert into user (name) values (?)");
+			
+			stmt.setString(1, u.getName());
+			
+			stmt.executeUpdate();
+			
+			stmt.close();
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
 		
 	}
 
