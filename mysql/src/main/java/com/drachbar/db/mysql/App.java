@@ -8,13 +8,16 @@ import java.sql.SQLException;
  */
 public class App {
 	public static void main(String[] args) {
+		
+		var props = Profile.getProperties("db");
+		
 		var db = Database.instance();
 
 		try {
-			db.connect();
+			db.connect(props);
 		} catch (SQLException e) {
 			System.out.println("Cannot connect to database");
-			e.printStackTrace();
+			return;
 		}
 
 		System.out.println("Connected");
