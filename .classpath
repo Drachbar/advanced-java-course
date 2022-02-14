@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="EclipseTest/src"/>
+	<classpathentry kind="src" path="gradle-eclipse-hello/src/main/java"/>
+	<classpathentry kind="src" path="gradle-eclipse-hello/src/test/java"/>
+	<classpathentry kind="src" path="gradle-hello-world/app/src/main/java"/>
+	<classpathentry kind="src" path="gradle-hello-world/app/src/test/java"/>
+	<classpathentry kind="src" path="guava-example/src/main/java"/>
+	<classpathentry kind="src" path="guava-example/src/test/java"/>
+	<classpathentry kind="src" path="HelloWorldMaven/src/main/java"/>
+	<classpathentry kind="src" path="HelloWorldMaven/src/test/java"/>
+	<classpathentry kind="src" path="HelloWorldMavenEclipse/src/main/java"/>
+	<classpathentry kind="src" path="HelloWorldMavenEclipse/src/test/java"/>
+	<classpathentry kind="src" path="mysql/src/main/java"/>
+	<classpathentry kind="src" path="mysql/src/test/java"/>
+	<classpathentry kind="src" path="Simple/src"/>
+	<classpathentry kind="src" path="SQLiteProject/src/main/java"/>
+	<classpathentry kind="lib" path="gradle-eclipse-hello/build/libs/gradle-eclipse-hello.jar"/>
+	<classpathentry kind="lib" path="gradle-eclipse-hello/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="gradle-hello-world/app/build/libs/app.jar"/>
+	<classpathentry kind="lib" path="gradle-hello-world/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="HelloWorldMaven/target/HelloWorldMaven-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="HelloWorldMavenEclipse/target/HelloWorldMavenEclipse-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="SQLiteProject/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="EclipseTest/bin"/>
+</classpath>
