@@ -21,7 +21,7 @@ public class UserDaoImplTest {
 	private Connection conn;
 	private List<User> users;
 
-	private static final int NUM_TEST_USERS = 1000;
+	private static final int NUM_TEST_USERS = 4;
 
 	private List<User> loadUsers() throws IOException {
 
@@ -47,8 +47,8 @@ public class UserDaoImplTest {
 
 		users = loadUsers();
 
-		System.out.println(users);
-		System.out.println(users.size());
+		//System.out.println(users);
+		//System.out.println(users.size());
 
 		var props = Profile.getProperties("db");
 
@@ -130,6 +130,42 @@ public class UserDaoImplTest {
 	}
 	
 	@Test
+	public void testDelete() throws SQLException {
+		UserDao userDao = new UserDaoImpl();
+
+		for (var u : users) {
+			userDao.save(u);
+		}
+		
+		var maxId = getMaxId();
+
+		for (int i = 0; i < users.size(); i++) {
+			int id = (maxId - users.size()) + i + 1;
+
+			users.get(i).setId(id);
+		}
+		
+		var deleteUserIndex = NUM_TEST_USERS/2;
+		var deleteUser = users.get(deleteUserIndex);
+		
+		users.remove(deleteUser);
+		System.out.println(deleteUser);
+		System.out.println(users);
+		
+		
+		userDao.delete(deleteUser);
+		var retrievedUsers = getUsersInRange((maxId - NUM_TEST_USERS) + 1, maxId);
+		
+		System.out.println(retrievedUsers);
+
+		assertEquals("Size of retrieved users not equal to number of test users", 
+				retrievedUsers.size(),
+				users.size());
+
+		assertEquals("retrieved users don't match saved users", users, retrievedUsers);
+	}
+	
+	@Test
 	public void testGetALl() throws SQLException {
 		UserDao userDao = new UserDaoImpl();
 
@@ -146,7 +182,7 @@ public class UserDaoImplTest {
 		}
 
 		var dbUsers = userDao.getAll();
-		dbUsers.subList(dbUsers.size() - users.size(), dbUsers.size());
+		dbUsers = dbUsers.subList(dbUsers.size() - users.size(), dbUsers.size());
 
 		assertEquals("Size of retrieved users not equal to number of test users", 
 				dbUsers.size(),
@@ -175,7 +211,7 @@ public class UserDaoImplTest {
 		
 		assertEquals("retrieved user doesn't match saved user", user, retrievedUser);
 		
-		System.out.println(retrievedUser);
+		//System.out.println(retrievedUser);
 		
 		user.setName("Mattias Andersson");
 		
@@ -189,7 +225,7 @@ public class UserDaoImplTest {
 		
 		assertEquals("retrieved user doesn't match updated user", user, retrievedUser);
 		
-		System.out.println(retrievedUser);
+		//System.out.println(retrievedUser);
 	}
 
 	@Test
