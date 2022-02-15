@@ -47,8 +47,8 @@ public class UserDaoImplTest {
 
 		users = loadUsers();
 
-		//System.out.println(users);
-		//System.out.println(users.size());
+		// System.out.println(users);
+		// System.out.println(users.size());
 
 		var props = Profile.getProperties("db");
 
@@ -122,13 +122,12 @@ public class UserDaoImplTest {
 
 		var retrievedUsers = getUsersInRange((maxId - users.size()) + 1, maxId);
 
-		assertEquals("Size of retrieved users not equal to number of test users", 
-				retrievedUsers.size(),
+		assertEquals("Size of retrieved users not equal to number of test users", retrievedUsers.size(),
 				NUM_TEST_USERS);
 
 		assertEquals("retrieved users don't match saved users", users, retrievedUsers);
 	}
-	
+
 	@Test
 	public void testDelete() throws SQLException {
 		UserDao userDao = new UserDaoImpl();
@@ -136,7 +135,7 @@ public class UserDaoImplTest {
 		for (var u : users) {
 			userDao.save(u);
 		}
-		
+
 		var maxId = getMaxId();
 
 		for (int i = 0; i < users.size(); i++) {
@@ -144,27 +143,24 @@ public class UserDaoImplTest {
 
 			users.get(i).setId(id);
 		}
-		
-		var deleteUserIndex = NUM_TEST_USERS/2;
+
+		var deleteUserIndex = NUM_TEST_USERS / 2;
 		var deleteUser = users.get(deleteUserIndex);
-		
+
 		users.remove(deleteUser);
 		System.out.println(deleteUser);
 		System.out.println(users);
-		
-		
+
 		userDao.delete(deleteUser);
 		var retrievedUsers = getUsersInRange((maxId - NUM_TEST_USERS) + 1, maxId);
-		
+
 		System.out.println(retrievedUsers);
 
-		assertEquals("Size of retrieved users not equal to number of test users", 
-				retrievedUsers.size(),
-				users.size());
+		assertEquals("Size of retrieved users not equal to number of test users", retrievedUsers.size(), users.size());
 
 		assertEquals("retrieved users don't match saved users", users, retrievedUsers);
 	}
-	
+
 	@Test
 	public void testGetALl() throws SQLException {
 		UserDao userDao = new UserDaoImpl();
@@ -184,48 +180,46 @@ public class UserDaoImplTest {
 		var dbUsers = userDao.getAll();
 		dbUsers = dbUsers.subList(dbUsers.size() - users.size(), dbUsers.size());
 
-		assertEquals("Size of retrieved users not equal to number of test users", 
-				dbUsers.size(),
-				NUM_TEST_USERS);
+		assertEquals("Size of retrieved users not equal to number of test users", dbUsers.size(), NUM_TEST_USERS);
 
 		assertEquals("retrieved users don't match saved users", users, dbUsers);
 	}
-	
+
 	@Test
 	public void testFindAndUpdate() throws SQLException {
 		var user = users.get(0);
-		
+
 		UserDao userDao = new UserDaoImpl();
-		
+
 		userDao.save(user);
-		
+
 		var maxId = getMaxId();
-		
+
 		user.setId(maxId);
-		
+
 		var retrievedUserOpt = userDao.findById(maxId);
-		
+
 		assertTrue("no user retrieved", retrievedUserOpt.isPresent());
-		
+
 		var retrievedUser = retrievedUserOpt.get();
-		
+
 		assertEquals("retrieved user doesn't match saved user", user, retrievedUser);
-		
-		//System.out.println(retrievedUser);
-		
+
+		// System.out.println(retrievedUser);
+
 		user.setName("Mattias Andersson");
-		
+
 		userDao.update(user);
-		
+
 		retrievedUserOpt = userDao.findById(maxId);
-		
+
 		assertTrue("no updated user retrieved", retrievedUserOpt.isPresent());
-		
+
 		retrievedUser = retrievedUserOpt.get();
-		
+
 		assertEquals("retrieved user doesn't match updated user", user, retrievedUser);
-		
-		//System.out.println(retrievedUser);
+
+		// System.out.println(retrievedUser);
 	}
 
 	@Test
