@@ -1,7 +1,11 @@
 package app;
 
 public class User {
+	
+	@Field
 	private Long id;
+	
+	@Field
 	private String name;
 	
 	public User(Long id, String name) {
