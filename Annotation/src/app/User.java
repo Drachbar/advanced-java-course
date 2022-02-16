@@ -2,8 +2,7 @@ package app;
 
 public class User {
 	
-	@Field
-	@Deprecated
+	@Field(value="id", isKey=true)
 	private Long id;
 	
 	@Field
