@@ -26,4 +26,7 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    
+    // This dependency is to change look and feel to FlatDarkLaf
+    compile group: 'com.formdev', name: 'flatlaf', version: '0.37'
 }
