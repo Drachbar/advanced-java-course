@@ -55,6 +55,12 @@ public class MainPanel extends JPanel {
 		
 		var addButton = new JButton("Save");
 		
+		addButton.addActionListener(e -> {
+			String name = nameField.getText();
+			String password = passField.getText();
+			System.out.println("Name: " + name + ", Password: " + password);
+		});
+		
 		var rightPad = new Insets(0, 0, 0, 10);
 		var zeroInsets = new Insets(0, 0, 0, 0);
 		
