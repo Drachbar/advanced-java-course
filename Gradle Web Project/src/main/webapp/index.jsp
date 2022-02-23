@@ -34,14 +34,8 @@ label {
 
 </head>
 <body>
-	<p>
-		<c:out value="${pageContext.servletContext.contextPath}" />
-	</p>
-	<p>
-		<c:url value="/test" />
-	</p>
 	
-	<form>
+	<form action="${pageContext.servletContext.contextPath}/users" method="POST">
 	
 	<label for="name">Name:</label>
 	<input type="text" id="name" name="name" />
