@@ -18,6 +18,9 @@ repositories {
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
+	implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.6.4'
 
