@@ -9,7 +9,11 @@ import app.model.Book;
 public class BookTableModel extends AbstractTableModel{
 
 	private static final long serialVersionUID = 1L;
-	private List<Book> bookList = List.of(new Book("author1", "title1"), new Book("author2", "title2"));
+	private List<Book> bookList;
+	
+	public BookTableModel(List<Book> bookList) {
+		this.bookList = bookList;
+	}
 	
 	@Override
 	public int getRowCount() {
