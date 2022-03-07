@@ -25,4 +25,9 @@ public class ViewBooksPanel extends JPanel {
 		add(scrollPane, BorderLayout.CENTER);
 		
 	}
+
+	public void refresh() {
+		tableModel.fireTableDataChanged();
+		
+	}
 }
